@@ -4,7 +4,7 @@
 
 2. RL for adaptive video compression : [google drive](https://drive.google.com/file/d/100_sZQyzOolvUEu6isxiwMHsYrxk5sC5/view?usp=sharing)
 
-3. Hardware deployment : [google drive](https://drive.google.com/file/d/16UXTB2pk5keQteCeQzU9XrA_PAGlxEIQ/view?usp=sharing)
+3. FPGA deployment : [google drive](https://drive.google.com/file/d/16UXTB2pk5keQteCeQzU9XrA_PAGlxEIQ/view?usp=sharing)
 
 4. Cross-Modal obstacle detection : [google drive](https://drive.google.com/file/d/1rUKuZdITwKC5Puv39rheigj6lne3HswW/view?usp=sharing)
 
