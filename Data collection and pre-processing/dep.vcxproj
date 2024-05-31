@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{DDFA7022-D03A-43AE-8C12-0CD9CE63AFA4}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Link>
+      <StackReserveSize>20000000</StackReserveSize>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="examples\align.cpp" />
+    <ClCompile Include="examples\depth - 副本 (2).cpp" />
+    <ClCompile Include="examples\depth - 副本.cpp" />
+    <ClCompile Include="examples\depth.cpp" />
+    <ClCompile Include="examples\pointcloud.cpp" />
+    <ClCompile Include="examples\rgb.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="examples\render.h" />
+    <ClInclude Include="include\common\calib_convert.h" />
+    <ClInclude Include="include\common\exception.h" />
+    <ClInclude Include="include\common\paraments_calib.pb.h" />
+    <ClInclude Include="include\libsynexens3\config.h" />
+    <ClInclude Include="include\libsynexens3\context.h" />
+    <ClInclude Include="include\libsynexens3\device-info.h" />
+    <ClInclude Include="include\libsynexens3\device.h" />
+    <ClInclude Include="include\libsynexens3\frame.h" />
+    <ClInclude Include="include\libsynexens3\libsynexens3.h" />
+    <ClInclude Include="include\libsynexens3\option.h" />
+    <ClInclude Include="include\libsynexens3\pipeline.h" />
+    <ClInclude Include="include\libsynexens3\process-engine.h" />
+    <ClInclude Include="include\libsynexens3\sensor.h" />
+    <ClInclude Include="include\libsynexens3\types.h" />
+    <ClInclude Include="include\macros.h" />
+    <ClInclude Include="include\platform\base\uvc-base-camera.h" />
+    <ClInclude Include="include\platform\linux\platform-ubuntu.h" />
+    <ClInclude Include="include\platform\platform-interface.h" />
+    <ClInclude Include="include\platform\platform.h" />
+    <ClInclude Include="include\platform\uvc-xu-def.h" />
+    <ClInclude Include="include\platform\windows\platform-windows.h" />
+    <ClInclude Include="include\version.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\calib3d.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\calib3d\calib3d.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\calib3d\calib3d_c.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\affine.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\async.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\base.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\bindings_utils.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\bufferpool.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\check.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\core.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\core_c.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda.inl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\block.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\border_interpolate.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\color.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\common.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\datamov_utils.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\detail\color_detail.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\detail\reduce.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\detail\reduce_key_val.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\detail\transform_detail.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\detail\type_traits_detail.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\detail\vec_distance_detail.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\dynamic_smem.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\emulation.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\filters.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\funcattrib.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\functional.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\limits.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\reduce.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\saturate_cast.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\scan.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\simd_functions.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\transform.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\type_traits.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\utility.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\vec_distance.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\vec_math.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\vec_traits.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\warp.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\warp_reduce.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda\warp_shuffle.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda_stream_accessor.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cuda_types.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cvdef.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cvstd.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cvstd.inl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cvstd_wrapper.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cv_cpu_dispatch.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\cv_cpu_helper.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\detail\async_promise.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\detail\exception_ptr.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\directx.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\eigen.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\fast_math.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\hal.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\interface.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\intrin.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\intrin_avx.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\intrin_avx512.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\intrin_cpp.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\intrin_forward.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\intrin_msa.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\intrin_neon.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\intrin_sse.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\intrin_sse_em.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\intrin_vsx.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\intrin_wasm.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\msa_macros.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\hal\simd_utils.impl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\mat.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\mat.inl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\matx.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\neon_utils.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\ocl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\ocl_genbase.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\ocl_defs.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\opencl_info.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\opencl_svm.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\autogenerated\opencl_clamdblas.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\autogenerated\opencl_clamdfft.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\autogenerated\opencl_core.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\autogenerated\opencl_core_wrappers.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\autogenerated\opencl_gl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\autogenerated\opencl_gl_wrappers.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\opencl_clamdblas.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\opencl_clamdfft.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\opencl_core.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\opencl_core_wrappers.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\opencl_gl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\opencl_gl_wrappers.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\opencl_svm_20.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\opencl_svm_definitions.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opencl\runtime\opencl_svm_hsa_extension.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\opengl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\operations.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\optim.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\ovx.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\persistence.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\saturate.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\simd_intrinsics.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\softfloat.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\sse_utils.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\traits.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\types.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\types_c.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\utility.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\utils\allocator_stats.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\utils\allocator_stats.impl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\utils\filesystem.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\utils\instrumentation.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\utils\logger.defines.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\utils\logger.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\utils\logtag.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\utils\tls.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\utils\trace.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\va_intel.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\version.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\core\vsx_utils.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\cvconfig.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\dnn.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\dnn\all_layers.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\dnn\dict.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\dnn\dnn.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\dnn\dnn.inl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\dnn\layer.details.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\dnn\layer.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\dnn\shape_utils.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\dnn\utils\inference_engine.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\dnn\version.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\features2d.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\features2d\features2d.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\features2d\hal\interface.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\allocator.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\all_indices.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\any.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\autotuned_index.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\composite_index.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\config.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\defines.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\dist.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\dummy.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\dynamic_bitset.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\flann.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\flann_base.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\general.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\ground_truth.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\hdf5.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\heap.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\hierarchical_clustering_index.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\index_testing.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\kdtree_index.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\kdtree_single_index.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\kmeans_index.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\linear_index.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\logger.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\lsh_index.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\lsh_table.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\matrix.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\miniflann.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\nn_index.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\object_factory.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\params.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\random.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\result_set.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\sampling.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\saving.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\simplex_downhill.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\flann\timer.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\core.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\cpu\core.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\cpu\gcpukernel.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\cpu\imgproc.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\cpu\video.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\fluid\core.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\fluid\gfluidbuffer.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\fluid\gfluidkernel.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\fluid\imgproc.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\garg.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\garray.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gasync_context.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gcall.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gcommon.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gcompiled.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gcompiled_async.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gcompoundkernel.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gcomputation.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gcomputation_async.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gkernel.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gmat.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gmetaarg.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gopaque.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gproto.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gpu\core.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gpu\ggpukernel.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gpu\imgproc.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gscalar.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gstreaming.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gtransform.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gtyped.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\gtype_traits.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\imgproc.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\infer.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\infer\ie.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\ocl\core.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\ocl\goclkernel.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\ocl\imgproc.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\opencv_includes.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\operators.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\own\assert.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\own\convert.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\own\cvdefs.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\own\exports.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\own\mat.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\own\saturate.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\own\scalar.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\own\types.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\plaidml\core.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\plaidml\gplaidmlkernel.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\plaidml\plaidml.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\render.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\render\render.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\s11n.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\streaming\cap.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\streaming\source.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\util\any.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\util\compiler_hints.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\util\optional.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\util\throw.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\util\type_traits.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\util\util.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\util\variant.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\gapi\video.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\highgui.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\highgui\highgui.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\highgui\highgui_c.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\imgcodecs.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\imgcodecs\imgcodecs.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\imgcodecs\imgcodecs_c.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\imgcodecs\ios.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\imgcodecs\legacy\constants_c.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\imgproc.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\imgproc\detail\gcgraph.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\imgproc\hal\hal.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\imgproc\hal\interface.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\imgproc\imgproc.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\imgproc\imgproc_c.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\imgproc\types_c.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\ml.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\ml\ml.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\ml\ml.inl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\objdetect.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\objdetect\detection_based_tracker.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\objdetect\objdetect.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\opencv.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\opencv_modules.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\photo.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\photo\cuda.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\photo\legacy\constants_c.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\photo\photo.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\detail\autocalib.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\detail\blenders.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\detail\camera.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\detail\exposure_compensate.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\detail\matchers.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\detail\motion_estimators.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\detail\seam_finders.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\detail\timelapsers.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\detail\util.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\detail\util_inl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\detail\warpers.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\detail\warpers_inl.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\stitching\warpers.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\video.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\videoio.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\videoio\cap_ios.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\videoio\legacy\constants_c.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\videoio\registry.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\videoio\videoio.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\videoio\videoio_c.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\video\background_segm.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\video\legacy\constants_c.h" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\video\tracking.hpp" />
+    <ClInclude Include="third-party\opencv-4.4.0\include\opencv2\video\video.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\x64\18338671307213296175775120611158254209240.bin" />
+    <None Include="bin\x64\911612421262003183186651091022919311936163.bin" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
