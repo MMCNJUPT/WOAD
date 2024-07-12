@@ -7,7 +7,7 @@ from d3rlpy.algos import DiscreteSAC
 from d3rlpy.metrics.scorer import td_error_scorer
 from d3rlpy.metrics.scorer import average_value_estimation_scorer
 
-new_dataset = MDPDataset.load('./RL_data/random_dataset_RL.h5')
+new_dataset = MDPDataset.load('./RL_data/dataset_RL.h5')
 train_episodes, test_episodes = train_test_split(new_dataset, test_size=0.2)
 
 discreteSAC = DiscreteSAC(use_gpu=True)
