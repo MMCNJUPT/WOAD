@@ -18,4 +18,4 @@ All the necessary data for the demo is included in the /RL_data folder.
 
 6. python eval_discreteSAC.py
 
-In the end, you will obtain policy_cerebellar.onnx, which will be deployed on the device as C++ code for pre-processing.
+In the end, you will obtain policy_cerebellar.onnx, which will be deployed on the WOAD as C++ code for pre-processing.
