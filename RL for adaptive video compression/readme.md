@@ -10,12 +10,12 @@ All the necessary data for the demo is included in the /RL_data folder.
    
 2. python train_RL.py
 
-3. creat_MDPDataset_cerebellar_reward.py
+3. python creat_MDPDataset_cerebellar_reward.py
 
-4. train_cerebellar_RL.py
+4. python train_cerebellar_RL.py
 
-5. save_DSAC_onnx_model.py
+5. python save_DSAC_onnx_model.py
 
-6. eval_discreteSAC.py
+6. python eval_discreteSAC.py
 
 In the end, you will obtain policy_cerebellar.onnx.
