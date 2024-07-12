@@ -1,7 +1,9 @@
 ### Environment:
-   python 3.8  
-   torch 1.13.0  
-   d3rlpy 1.1.1  
+python 3.8  
+ 
+torch 1.13.0  
+ 
+d3rlpy 1.1.1  
 
 ### Demo:
 All the necessary data for the demo is included in the /RL_data folder.
