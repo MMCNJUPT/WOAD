@@ -3,7 +3,7 @@ import d3rlpy
 import torch
 import pandas as pd
 
-excel_file = "./RL_data/RL_data.xlsx"  # 将此处替换为您的Excel文件路径
+excel_file = "./RL_data/RL_data.xlsx" 
 df = pd.read_excel(excel_file)
 
 all_columns_data = df.values.T
