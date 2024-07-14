@@ -10,4 +10,4 @@ For all version details and readme files, please refer to each subfolder.
 
 4. Cross-Modal obstacle detection : [google drive](https://drive.google.com/file/d/1rUKuZdITwKC5Puv39rheigj6lne3HswW/view?usp=sharing)
 
-5. Smartphone deployment : [google drive](https://drive.google.com/file/d/1PqgiflsOSMTj8WfeQvWeIWW3IG15Y7d3/view?usp=sharing)
+5. Smartphone deployment : [google drive](https://drive.google.com/file/d/1Kava0aKGvZWK7KlZPpPcejlNSpcZgbpT/view?usp=sharing)
