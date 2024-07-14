@@ -1,11 +1,11 @@
-## Prerequisites
+## Environment:
 
 * OpenCV-JavaVersion = 4.5.4
 * Python 3.8 (Optional)
 * Android Pytorch library pytorch_android_lite:1.10.0, pytorch_android_torchvision_lite:1.10.0, TensorFlow Java 2.x
 * Android Studio 4.0.1 or later
 
-## Quick Start
+## Quick Start:
 
 To Test Run the WOAD-Moblie-ObjectDetection Android App, follow the steps below:
 
