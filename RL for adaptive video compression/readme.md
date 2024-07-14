@@ -5,7 +5,7 @@
  
 - d3rlpy 1.1.1  
 
-# Get policy:
+# Quick Start:
 All the necessary data for the demo is included in the /RL_data folder.
 Please obtain all the data from Google Drive.
    
