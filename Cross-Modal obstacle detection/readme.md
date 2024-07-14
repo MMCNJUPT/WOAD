@@ -10,4 +10,8 @@ The training/validation/test datasets can be found in the [google drive](https:/
 ```
 1. python train.py
 ```
-After the training is complete, you can find the optimal weights in /runs/train.
+After the training is complete, you can find the optimal weights in /runs/train, which will be deployed on the mobile device.
+```
+2. python val.py
+```
+You can determine the performance of the weights on the test set.
