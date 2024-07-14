@@ -6,7 +6,7 @@ For all version details and readme files, please refer to each subfolder.
 
 2. RL for adaptive video compression : [google drive](https://drive.google.com/file/d/1qkGsaKZv7PPvwZIAGaCzVvOe59MqIPkk/view?usp=sharing)
 
-3. FPGA deployment : [google drive](https://drive.google.com/file/d/16UXTB2pk5keQteCeQzU9XrA_PAGlxEIQ/view?usp=sharing)
+3. FPGA deployment : [google drive](https://drive.google.com/file/d/1PExD1QZmMm3K0I-1pPuamR4yuenDzLP_/view?usp=sharing)
 
 4. Cross-Modal obstacle detection : [google drive](https://drive.google.com/file/d/1rUKuZdITwKC5Puv39rheigj6lne3HswW/view?usp=sharing)
 
