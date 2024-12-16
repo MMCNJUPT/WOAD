@@ -9,13 +9,14 @@ For all version details and readme files, please refer to each subfolder.
 You can access all the data and source codes from [Google Drive Link](https://drive.google.com/file/d/1wmSLaWwfrAhYCl45vA9duIuWpEkHk4q8/view?usp=sharing)
 
 ### Installation
+Environment:
 * Windows 11
-* gcc 9.4.0
-* g++ 9.4.0
-* opencv_imgproc440.dll
+* Gcc 9.4.0
+* G++ 9.4.0
+* Opencv_imgproc440.dll
 * SonixCamera.dll
-* csreconstruction.dll
-* libsynexens3.dll
+* Csreconstruction.dll
+* Libsynexens3.dll
 
 ### Device and Driver
 * Synexens RGB-TOF multi-modal sensor [CS30](https://support.tofsensors.com/product/CS30.html)
@@ -34,6 +35,13 @@ The expected run time of the demo will take no longer than 2 minutes on a "norma
 
 You can access all the data and source codes from [Google Drive Link](https://drive.google.com/file/d/1qkGsaKZv7PPvwZIAGaCzVvOe59MqIPkk/view?usp=sharing)
 
+### Installation
+
+* python 3.8  
+* torch 1.13.0  
+* d3rlpy 1.1.1  
+
+Data availability
 
 ## 3. FPGA deployment : [google drive](https://drive.google.com/file/d/1PExD1QZmMm3K0I-1pPuamR4yuenDzLP_/view?usp=sharing)
 
