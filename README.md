@@ -18,7 +18,7 @@ You can access all the data and source codes from [Google Drive Link](https://dr
 * libsynexens3.dll
 
 ### Device and Driver
-* yunshi RGB-TOF multi-modal sensor CS30 [Tao Bao]([https://drive.google.com/file/d/1wmSLaWwfrAhYCl45vA9duIuWpEkHk4q8/view?usp=sharing](https://item.taobao.com/item.htm?app=weixin&bc_fl_src=share-1041093625490825-2-1&bxsign=scdSBct7CquxvdkHc-S4E8wsiVmuhNnGfVVTh85dPNqTWNuEm2GQXuyIiWm6OeJIZhZQuitZ1GizsHz8k4jBWAEDjeX0n--uILfMn887oqK6haUIPwHAFMrkLiir9kBbMxN&cpp=1&id=667364977514&share_crt_v=1&shareurl=true&short_name=h.TfIBcJHKpILSuyL&sp_tk=Qlo0QTNDY2hKMjQ%3D&spm=a2159r.13376460.0.0&tbSocialPopKey=shareItem&tk=BZ4A3CchJ24&un=de399a3a61f9a38803c6109e527695c7&un_site=0&ut_sk=1.Z1QdewEywXgDAB72G3WraOnc_21646297_1734358135484.TaoPassword-WeiXin.1&wxsign=tbwNg4gAxNttXotScVhB7Pjfc_y-d_L6IWOGGIFFRO_vm_ChpbybceveHYKZd-B-VF9os8gs2QtaHmLMsNRris3Y0IUdXhGskAh-l_3cb3vWoJMTVZlwjGp1x54gl-wEDei))
+* yunshi RGB-TOF multi-modal sensor [CS30](https://support.tofsensors.com/product/CS30.html)
 * cs30-driver v.11
 
 ### Demo
