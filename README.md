@@ -49,6 +49,7 @@ All the necessary data for the demo is included in the `./RL_data folder`. Pleas
 * Run `python creat_MDPDataset_cerebellar_reward.py` to get dataset with cerebellar reward.
 * Run `python train_cerebellar_RL.py` to get policy model with cerebellar reward.
 * Run `python save_DSAC_onnx_model.py` to save poliicy model.
+
 In the end, you will obtain `policy_cerebellar.onnx`, which will be deployed on the WOAD as C++ code for pre-processing.
 
 ## 3. FPGA deployment 
