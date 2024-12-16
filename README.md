@@ -1,6 +1,10 @@
-# WOAD
+# WOAD: A Wearable Obstacle Avoidance Device for Visually Impaired Individuals with Cross-Modal Learning
+
+This repository contains the source codes and data for our paper reviewed in Nature Communications:
 
 For all version details and readme files, please refer to each subfolder.
+
+# 
 
 1. Data collection and pre-processing：[google drive](https://drive.google.com/file/d/1wmSLaWwfrAhYCl45vA9duIuWpEkHk4q8/view?usp=sharing)
 
