@@ -18,7 +18,7 @@ You can access all the data and source codes from [Google Drive Link](https://dr
 * libsynexens3.dll
 
 ### Device and Driver
-* yunshi RGB-TOF multi-modal sensor [CS30](https://support.tofsensors.com/product/CS30.html)
+* Synexens RGB-TOF multi-modal sensor [CS30](https://support.tofsensors.com/product/CS30.html)
 * cs30-driver v.11
 
 ### Demo
