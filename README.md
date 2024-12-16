@@ -2,14 +2,11 @@
 
 This repository contains the source codes and data for our paper reviewed in Nature Communications:
 
-For all version details and readme files, please refer to each subfolder.
-
 ## 1. Data collection and pre-processing
 
 You can access all the data and source codes from [Google Drive Link](https://drive.google.com/file/d/1wmSLaWwfrAhYCl45vA9duIuWpEkHk4q8/view?usp=sharing)
 
 ### Installation
-Environment:
 * Windows 11
 * Gcc 9.4.0
 * G++ 9.4.0
@@ -37,13 +34,26 @@ You can access all the data and source codes from [Google Drive Link](https://dr
 
 ### Installation
 
-* python 3.8  
-* torch 1.13.0  
-* d3rlpy 1.1.1  
+* Python 3.8  
+* Torch 1.13.0  
+* D3rlpy 1.1.1  
 
-Data availability
+The installation time will take no longer than 30 minutes on a "normal" desktop computer with good Internet conditions.
 
-## 3. FPGA deployment : [google drive](https://drive.google.com/file/d/1PExD1QZmMm3K0I-1pPuamR4yuenDzLP_/view?usp=sharing)
+### Data availability
+
+All the necessary data for the demo is included in the `./RL_data folder`. Please obtain all the data from [Google Drive Link](https://drive.google.com/file/d/1qkGsaKZv7PPvwZIAGaCzVvOe59MqIPkk/view?usp=sharing)
+
+### Demo
+* Run `python train_RL.py` to get policy model without cerebellar reward.
+* Run `python creat_MDPDataset_cerebellar_reward.py` to get dataset with cerebellar reward.
+* Run `python train_cerebellar_RL.py` to get policy model with cerebellar reward.
+* Run `python save_DSAC_onnx_model.py` to save poliicy model.
+In the end, you will obtain `policy_cerebellar.onnx`, which will be deployed on the WOAD as C++ code for pre-processing.
+
+## 3. FPGA deployment 
+
+You can access all the data and source codes from [Google Drive Link](https://drive.google.com/file/d/1PExD1QZmMm3K0I-1pPuamR4yuenDzLP_/view?usp=sharing)
 
 4. Cross-Modal obstacle detection : [google drive](https://drive.google.com/file/d/1rUKuZdITwKC5Puv39rheigj6lne3HswW/view?usp=sharing)
 
