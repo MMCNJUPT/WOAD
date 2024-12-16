@@ -18,8 +18,8 @@ You can access all the data and source codes from [google drive link](https://dr
 * libsynexens3.dll
 
 ### Device and Driver
-* YUNShi RGB-TOF multi-modal sensor CS30
-* Cs30-driver v.11
+* yunshi RGB-TOF multi-modal sensor CS30
+* cs30-driver v.11
 
 ### Demo
 * Run the `save_depth_ir_rgb.exe` in bin/x64.
