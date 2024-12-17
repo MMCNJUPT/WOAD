@@ -4,7 +4,7 @@ This repository contains the source codes and data for our paper reviewed in Nat
 
 ## 1. Data collection and pre-processing
 
-You can access all the data and source codes from [Google Drive Link]()
+You can access all the data and source codes from [Google Drive Link](https://drive.google.com/file/d/1wmSLaWwfrAhYCl45vA9duIuWpEkHk4q8/view?usp=sharing)
 
 ### Environment
 * Windows 11
@@ -32,19 +32,25 @@ The expected run time of the demo will take no longer than 2 minutes on a "norma
 
 ## 2. RL for adaptive video compression 
 
-You can access all the data and source codes from [Google Drive Link]()
+You can access all the data and source codes from [Google Drive Link](https://drive.google.com/file/d/100_sZQyzOolvUEu6isxiwMHsYrxk5sC5/view?usp=sharing)
 
-### Installation
+### Environment
 
 * Python 3.8  
 * Torch 1.13.0  
-* D3rlpy 1.1.1  
+* D3rlpy 1.1.1
 
-The installation time will take no longer than 30 minutes on a "normal" desktop computer with good Internet conditions.
+1. Run `pip install -r requirements.txt` to install all dependencies required in your machine.
+
+2. Import PyTorch with the correct CUDA version.
+
+The installation time will take no longer than 20 minutes on a "normal" desktop computer with good Internet conditions.
 
 ### Data availability
 
-All the necessary data for the demo is included in the `./RL_data folder`. Please obtain all the data from [Google Drive Link]()
+All the necessary data for the demo is included in the `./RL_data folder`.
+
+Download the data form [Google Drive Link](https://drive.google.com/file/d/100_sZQyzOolvUEu6isxiwMHsYrxk5sC5/view?usp=sharing) and put it into the `./RL_data folder`.
 
 ### Demo
 * Run `python train_RL.py` to get policy model without cerebellar reward.
