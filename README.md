@@ -60,6 +60,9 @@ Download the data form [Google Drive Link](https://drive.google.com/file/d/100_s
 
 In the end, you will obtain `policy_cerebellar.onnx`, which will be deployed on the WOAD as C++ code for pre-processing.
 
+The expected run time of the demo will take no longer than 10 minutes on a "normal" desktop computer.
+
+
 ## 3. FPGA deployment 
 
 You can access all the data and source codes from [Google Drive Link](https://drive.google.com/file/d/1PExD1QZmMm3K0I-1pPuamR4yuenDzLP_/view?usp=sharing)
