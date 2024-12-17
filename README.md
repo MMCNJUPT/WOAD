@@ -138,8 +138,17 @@ You can access all the data and source codes from [Google Drive Link]()
 
 ### Environment
 
-* Vscode 1.91.1
-* Vscode extension Digital-IDE 0.2.6
-* Vivado 2018.3
+* Python 3.8
+* Torch 1.13.1
+
+1. Run `pip install -r requirements.txt` to install all dependencies required in your machine.
+
+2. Import PyTorch with the correct CUDA version.
+
+The installation time will take no longer than 20 minutes on a "normal" desktop computer with good Internet conditions.
+
+### Data availability
+
+Download the data form [Google Drive Link](https://drive.google.com/file/d/100_sZQyzOolvUEu6isxiwMHsYrxk5sC5/view?usp=sharing) and put it into the `./RL_data folder`.
 
 5. Smartphone deployment : [google drive](https://drive.google.com/file/d/1Kava0aKGvZWK7KlZPpPcejlNSpcZgbpT/view?usp=sharing)
