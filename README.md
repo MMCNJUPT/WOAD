@@ -193,7 +193,7 @@ You can access all the data and source codes from [Google Drive Link](https://dr
     ```
     implementation project(path: ':OpenQCV')
     ```
-    
+
 2. Build with Android Studio
 
 Start Android Studio, then open the project located in `WOAD-Moblie-ObjectDetection`. Note the app's `build.gradle` file has the following lines:
