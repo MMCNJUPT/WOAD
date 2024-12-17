@@ -75,6 +75,9 @@ You can access all the data and source codes from [Google Drive Link](https://dr
 
 The installation time will take no longer than 30 minutes on a "normal" desktop computer with good Internet conditions.
 
+### Device
+* FPGA/zynq [xc7a35tftg256](https://www.amd.com/zh-cn/products/adaptive-socs-and-fpgas/fpga/artix-7.html)
+
 ### File Structure
 
 ```
@@ -129,6 +132,14 @@ The installation time will take no longer than 30 minutes on a "normal" desktop 
 * `build` ------ to build the whole project and finally output the bit stream file
 * `program` ---- download the bitstream file to the FPGA/zynq board
 
-4. Cross-Modal obstacle detection : [google drive](https://drive.google.com/file/d/1rUKuZdITwKC5Puv39rheigj6lne3HswW/view?usp=sharing)
+## 4. Cross-Modal obstacle detection 
+
+You can access all the data and source codes from [Google Drive Link]()
+
+### Environment
+
+* Vscode 1.91.1
+* Vscode extension Digital-IDE 0.2.6
+* Vivado 2018.3
 
 5. Smartphone deployment : [google drive](https://drive.google.com/file/d/1Kava0aKGvZWK7KlZPpPcejlNSpcZgbpT/view?usp=sharing)
