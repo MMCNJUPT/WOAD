@@ -4,9 +4,9 @@ This repository contains the source codes and data for our paper reviewed in Nat
 
 ## 1. Data collection and pre-processing
 
-You can access all the data and source codes from [Google Drive Link](https://drive.google.com/file/d/1wmSLaWwfrAhYCl45vA9duIuWpEkHk4q8/view?usp=sharing)
+You can access all the data and source codes from [Google Drive Link]()
 
-### Installation
+### Environment
 * Windows 11
 * Gcc 9.4.0
 * G++ 9.4.0
@@ -14,6 +14,8 @@ You can access all the data and source codes from [Google Drive Link](https://dr
 * SonixCamera.dll
 * Csreconstruction.dll
 * Libsynexens3.dll
+
+The installation time will take no longer than 60 minutes on a "normal" desktop computer with good Internet conditions.
 
 ### Device and Driver
 * Synexens RGB-TOF multi-modal sensor [CS30](https://support.tofsensors.com/product/CS30.html)
@@ -23,14 +25,14 @@ You can access all the data and source codes from [Google Drive Link](https://dr
 * Run the `save_depth_ir_rgb.exe` in `bin/x64`.
 
 The expected output is the depth/ir/rgb data in `bin/x64/xxxxxxxxx`.
-You can access the demo data from [Google Drive Link](https://drive.google.com/file/d/1wmSLaWwfrAhYCl45vA9duIuWpEkHk4q8/view?usp=sharing)
+You can access the demo data from [Google Drive Link]()
 
 The expected run time of the demo will take no longer than 2 minutes on a "normal" desktop computer with the cs30 device.
 
 
 ## 2. RL for adaptive video compression 
 
-You can access all the data and source codes from [Google Drive Link](https://drive.google.com/file/d/1qkGsaKZv7PPvwZIAGaCzVvOe59MqIPkk/view?usp=sharing)
+You can access all the data and source codes from [Google Drive Link]()
 
 ### Installation
 
@@ -42,7 +44,7 @@ The installation time will take no longer than 30 minutes on a "normal" desktop 
 
 ### Data availability
 
-All the necessary data for the demo is included in the `./RL_data folder`. Please obtain all the data from [Google Drive Link](https://drive.google.com/file/d/1qkGsaKZv7PPvwZIAGaCzVvOe59MqIPkk/view?usp=sharing)
+All the necessary data for the demo is included in the `./RL_data folder`. Please obtain all the data from [Google Drive Link]()
 
 ### Demo
 * Run `python train_RL.py` to get policy model without cerebellar reward.
