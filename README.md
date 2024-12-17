@@ -105,6 +105,26 @@ The installation time will take no longer than 30 minutes on a "normal" desktop 
  ┃ ┃ ┃ ┣ 📂timing
  ┃ ┗ 📜RL_top.v --------- top design
 ```
+### Demo
+
+[Plugin Tutorial](https://sterben.nitcloud.cn/)
+```
+// property.json
+{
+	"TOOL_CHAIN": "xilinx",
+	"PRJ_NAME": {
+		"FPGA": "Tactical-helmet"
+	},
+	"SOC_MODE": {
+		"soc": "none"
+	},
+	"enableShowlog": false,
+	"Device": "xc7z010clg400-1"
+}
+```
+* `launch` ----- to start the whole project
+* `build` ------ to build the whole project and finally output the bit stream file
+* `program` ---- download the bitstream file to the FPGA/zynq board
 
 4. Cross-Modal obstacle detection : [google drive](https://drive.google.com/file/d/1rUKuZdITwKC5Puv39rheigj6lne3HswW/view?usp=sharing)
 
