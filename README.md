@@ -196,14 +196,14 @@ You can access all the data and source codes from [Google Drive Link](https://dr
 
 2. Build with Android Studio
 
-Start Android Studio, then open the project located in `WOAD-Moblie-ObjectDetection`. Note the app's `build.gradle` file has the following lines:
+    Start Android Studio, then open the project located in `WOAD-Moblie-ObjectDetection`. Note the app's `build.gradle` file has the following lines:
 
-```
-implementation 'org.pytorch:pytorch_android_lite:1.10.0'
-implementation 'org.pytorch:pytorch_android_torchvision_lite:1.10.0'
-implementation 'org.tensorflow:tensorflow-lite:2.4.0'
-implementation 'org.tensorflow:tensorflow-lite-gpu:2.4.0'
-```
+    ```
+    implementation 'org.pytorch:pytorch_android_lite:1.10.0'
+    implementation 'org.pytorch:pytorch_android_torchvision_lite:1.10.0'
+    implementation 'org.tensorflow:tensorflow-lite:2.4.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.4.0'
+    ```
     
 The installation time will take no longer than 60 minutes on a "normal" desktop computer and Android smart phone.
 
