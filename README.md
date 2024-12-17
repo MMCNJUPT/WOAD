@@ -24,7 +24,7 @@ The installation time will take no longer than 60 minutes on a "normal" desktop 
 ### Demo
 * Run the `save_depth_ir_rgb.exe` in `bin/x64`.
 
-The expected output is the depth/ir/rgb data in `bin/x64/xxxxxxxxx`.
+The expected output is the depth/ir/rgb data in `bin/x64/testxxxxxxxxxx`.
 You can access the demo data from [Google Drive Link]()
 
 The expected run time of the demo will take no longer than 2 minutes on a "normal" desktop computer with the cs30 device.
