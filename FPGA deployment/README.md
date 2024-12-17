@@ -1,10 +1,17 @@
-# Development Environment
+You can access all the data and source codes from [Google Drive Link](https://drive.google.com/file/d/1PExD1QZmMm3K0I-1pPuamR4yuenDzLP_/view?usp=sharing)
 
-- vscode 1.91.1
-- vscode extension Digital-IDE 0.2.6
-- vivado 2018.3
+### Environment
 
-# File Structure
+* Vscode 1.91.1
+* Vscode extension Digital-IDE 0.2.6
+* Vivado 2018.3
+
+The installation time will take no longer than 30 minutes on a "normal" desktop computer with good Internet conditions.
+
+### Device
+* FPGA/zynq [xc7a35tftg256](https://www.amd.com/zh-cn/products/adaptive-socs-and-fpgas/fpga/artix-7.html)
+
+### File Structure
 
 ```
 📦user
@@ -37,8 +44,8 @@
  ┃ ┃ ┃ ┣ 📂timing
  ┃ ┗ 📜RL_top.v --------- top design
 ```
+### Demo
 
-# Quick Start
 [Plugin Tutorial](https://sterben.nitcloud.cn/)
 ```
 // property.json
@@ -54,7 +61,6 @@
 	"Device": "xc7z010clg400-1"
 }
 ```
-
-1. launch ------ to start the whole project
-2. build ------- to build the whole project and finally output the bit stream file
-3. program ----- download the bitstream file to the FPGA/zynq board
+* `launch` ----- to start the whole project
+* `build` ------ to build the whole project and finally output the bit stream file
+* `program` ---- download the bitstream file to the FPGA/zynq board
