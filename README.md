@@ -37,7 +37,7 @@ You can access all the data and source codes from [Google Drive Link](https://dr
 ### Environment
 
 * Python 3.8  
-* Torch 1.13.0  
+* Torch 1.13.1  
 * D3rlpy 1.1.1
 
 1. Run `pip install -r requirements.txt` to install all dependencies required in your machine.
