@@ -45,19 +45,17 @@ TensorFlow.js:
 import argparse
 import json
 import os
-
 import platform
 import subprocess
 import sys
 import time
 import warnings
 from pathlib import Path
-import numpy as np
+
 import pandas as pd
 import torch
 import torch.nn as nn
 from torch.utils.mobile_optimizer import optimize_for_mobile
-
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # YOLOv5 root directory
@@ -72,7 +70,7 @@ from models.yolo import Detect
 from utils.activations import SiLU
 from utils.datasets import LoadImages
 from utils.general import (LOGGER, check_dataset, check_img_size, check_requirements, check_version, colorstr,
-                           file_size, print_args, url2file,cv2,non_max_suppression)
+                           file_size, print_args, url2file)
 from utils.torch_utils import select_device
 
 
@@ -250,82 +248,46 @@ def export_engine(model, im, file, train, half, simplify, workspace=4, verbose=F
 
 def export_saved_model(model, im, file, dynamic,
                        tf_nms=False, agnostic_nms=False, topk_per_class=100, topk_all=100, iou_thres=0.45,
-                       conf_thres=0.25, keras1=False, prefix=colorstr('TensorFlow SavedModel:')):
+                       conf_thres=0.25, keras=False, prefix=colorstr('TensorFlow SavedModel:')):
     # YOLOv5 TensorFlow SavedModel export
-    #try:
-    os.environ['CUDA_VISIBLE_DEVICES'] = "0"
-    import tensorflow as tf
-    from tensorflow import keras
-    from tensorflow.python.framework.convert_to_constants import convert_variables_to_constants_v2
-    img = cv2.imread("data/ir0000000183.png")
-    depth = cv2.imread("data/depth0000000183.png")
-    new_img = np.zeros((480, 1280, 3))
-    new_img[:, :640, :] = img[:,:,:]
-    new_img[:, 640:, :] = depth[:,:,:]
-    cv2.imwrite("result2.png", new_img)
+    try:
+        import tensorflow as tf
+        from tensorflow.python.framework.convert_to_constants import convert_variables_to_constants_v2
 
-    new_img1 = new_img.transpose((2, 0, 1))#[::-1]
-    new_img1 = np.ascontiguousarray(new_img1)
-    new_img1= np.expand_dims(new_img1, axis=0)
-    new_img_in = torch.from_numpy(new_img1).float()/255.0
-    #print('input2',new_img_in[0])
-    pred = model(new_img_in)[0]
-    #print("原始模型输出",pred)
-    pred2 = non_max_suppression(pred,0.45, 0.65, None, False, 1000)
+        from models.tf2 import TFDetect, TFModel
 
-    print(pred2)
-    # new_img2 = new_img.transpose((2, 0, 1))[::-1]
-    # new_img2 = np.ascontiguousarray(new_img2)
-    new_img2 = np.expand_dims(new_img, axis=0)
-    from models.tf import TFDetect, TFModel
+        LOGGER.info(f'\n{prefix} starting export with tensorflow {tf.__version__}...')
+        f = str(file).replace('.pt', '_saved_model')
+        batch_size, ch, *imgsz = list(im.shape)  # BCHW
 
-    LOGGER.info(f'\n{prefix} export_saved_model starting export with tensorflow {tf.__version__}...')
-
-    f = str(file).replace('.pt', '_saved_model')
-    batch_size, ch, *imgsz = list(new_img1.shape)  # BCHW
-    tf_model = TFModel(cfg=model.yaml, model=model, nc=model.nc, imgsz=imgsz)
-
-    #im = tf.zeros((batch_size, *imgsz, ch))  # BHWC order for TensorFlow
-    im=tf.convert_to_tensor(new_img2,dtype=tf.float32)/255.0
-
-    a = tf_model.predict(im, tf_nms, agnostic_nms, topk_per_class, topk_all, iou_thres, conf_thres)[0]
-    print("tf pred ",a)
-    # exit()
-    print('input2',*imgsz, ch)
-    inputs = keras.Input(shape=(*imgsz, ch), batch_size=None if dynamic else batch_size)
-    outputs = tf_model.predict(inputs, tf_nms, agnostic_nms, topk_per_class, topk_all, iou_thres, conf_thres)
-    # print("inputsshape:"+inputs.shape)
-   # print(outputs.shape)
-
-   # outputs=np.zeros((1,37800,3))
-    keras_model = keras.Model(inputs=inputs, outputs=outputs)
-    # print("outputsshape:"+outputs.shape)
-    # exit()
-
-    keras_model.trainable = False
-    keras_model.summary()
-
-    if keras1:#False
-        keras_model.save(f, save_format='tf')
-    else:
-        m = tf.function(lambda x: keras_model(x))  # full model
-        spec = tf.TensorSpec(keras_model.inputs[0].shape, keras_model.inputs[0].dtype)
-        m = m.get_concrete_function(spec)
-        frozen_func = convert_variables_to_constants_v2(m)
-        tfm = tf.Module()
-        tfm.__call__ = tf.function(lambda x: frozen_func(x)[0], [spec])
-        tfm.__call__(im)
-        tf.saved_model.save(
-            tfm,
-            f,
-            options=tf.saved_model.SaveOptions(experimental_custom_gradients=False) if
-            check_version(tf.__version__, '2.6') else tf.saved_model.SaveOptions())
-    LOGGER.info(f'{prefix} export_saved_model success, saved as {f} ({file_size(f):.1f} MB)')
-
-    return keras_model, f
-    # except Exception as e:
-    #     LOGGER.info(f'\n{prefix} export failure: {e}')
-    #     return None, None
+        tf_model = TFModel(cfg=model.yaml, model=model, nc=model.nc, imgsz=imgsz)
+        im = tf.zeros((batch_size, *imgsz, ch))  # BHWC order for TensorFlow
+        _ = tf_model.predict(im, tf_nms, agnostic_nms, topk_per_class, topk_all, iou_thres, conf_thres)
+        inputs = tf.keras.Input(shape=(*imgsz, ch), batch_size=None if dynamic else batch_size)
+        outputs = tf_model.predict(inputs, tf_nms, agnostic_nms, topk_per_class, topk_all, iou_thres, conf_thres)
+        keras_model = tf.keras.Model(inputs=inputs, outputs=outputs)
+        keras_model.trainable = False
+        keras_model.summary()
+        if keras:
+            keras_model.save(f, save_format='tf')
+        else:
+            m = tf.function(lambda x: keras_model(x))  # full model
+            spec = tf.TensorSpec(keras_model.inputs[0].shape, keras_model.inputs[0].dtype)
+            m = m.get_concrete_function(spec)
+            frozen_func = convert_variables_to_constants_v2(m)
+            tfm = tf.Module()
+            tfm.__call__ = tf.function(lambda x: frozen_func(x)[0], [spec])
+            tfm.__call__(im)
+            tf.saved_model.save(
+                tfm,
+                f,
+                options=tf.saved_model.SaveOptions(experimental_custom_gradients=False) if
+                check_version(tf.__version__, '2.6') else tf.saved_model.SaveOptions())
+        LOGGER.info(f'{prefix} export success, saved as {f} ({file_size(f):.1f} MB)')
+        return keras_model, f
+    except Exception as e:
+        LOGGER.info(f'\n{prefix} export failure: {e}')
+        return None, None
 
 
 def export_pb(keras_model, im, file, prefix=colorstr('TensorFlow GraphDef:')):
@@ -351,35 +313,34 @@ def export_pb(keras_model, im, file, prefix=colorstr('TensorFlow GraphDef:')):
 
 def export_tflite(keras_model, im, file, int8, data, ncalib, prefix=colorstr('TensorFlow Lite:')):
     # YOLOv5 TensorFlow Lite export
-    # try:
-    import tensorflow as tf
+    try:
+        import tensorflow as tf
 
-    LOGGER.info(f'\n{prefix} export_tflite starting export with tensorflow {tf.__version__}...')
-    batch_size, ch, *imgsz = list(im.shape)  # BCHW
-    f = str(file).replace('.pt', '-fp16.tflite')
+        LOGGER.info(f'\n{prefix} starting export with tensorflow {tf.__version__}...')
+        batch_size, ch, *imgsz = list(im.shape)  # BCHW
+        f = str(file).replace('.pt', '-fp16.tflite')
 
-    converter = tf.lite.TFLiteConverter.from_keras_model(keras_model)
-    converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS]
-    converter.target_spec.supported_types = [tf.float16]
-    converter.optimizations = [tf.lite.Optimize.DEFAULT]
+        converter = tf.lite.TFLiteConverter.from_keras_model(keras_model)
+        converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS]
+        converter.target_spec.supported_types = [tf.float16]
+        converter.optimizations = [tf.lite.Optimize.DEFAULT]
+        if int8:
+            from models.tf import representative_dataset_gen
+            dataset = LoadImages(check_dataset(data)['train'], img_size=imgsz, auto=False)  # representative data
+            converter.representative_dataset = lambda: representative_dataset_gen(dataset, ncalib)
+            converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
+            converter.target_spec.supported_types = []
+            converter.inference_input_type = tf.uint8  # or tf.int8
+            converter.inference_output_type = tf.uint8  # or tf.int8
+            converter.experimental_new_quantizer = True
+            f = str(file).replace('.pt', '-int8.tflite')
 
-    if int8:
-        from models.tf import representative_dataset_gen
-        dataset = LoadImages(check_dataset(data)['train'], img_size=imgsz, auto=False)  # representative data
-        converter.representative_dataset = lambda: representative_dataset_gen(dataset, ncalib)
-        converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
-        converter.target_spec.supported_types = []
-        converter.inference_input_type = tf.uint8  # or tf.int8
-        converter.inference_output_type = tf.uint8  # or tf.int8
-        converter.experimental_new_quantizer = True
-        f = str(file).replace('.pt', '-int8.tflite')
-
-    tflite_model = converter.convert()
-    open(f, "wb").write(tflite_model)
-    LOGGER.info(f'{prefix} export success, saved as {f} ({file_size(f):.1f} MB)')
-    return f
-    # except Exception as e:
-    #     LOGGER.info(f'\n{prefix} export failure: {e}')
+        tflite_model = converter.convert()
+        open(f, "wb").write(tflite_model)
+        LOGGER.info(f'{prefix} export success, saved as {f} ({file_size(f):.1f} MB)')
+        return f
+    except Exception as e:
+        LOGGER.info(f'\n{prefix} export failure: {e}')
 
 
 def export_edgetpu(keras_model, im, file, prefix=colorstr('Edge TPU:')):
@@ -478,7 +439,6 @@ def run(data=ROOT / 'data/coco128.yaml',  # 'dataset.yaml path'
     flags = [x in include for x in formats]
     assert sum(flags) == len(include), f'ERROR: Invalid --include {include}, valid --include arguments are {formats}'
     jit, onnx, xml, engine, coreml, saved_model, pb, tflite, edgetpu, tfjs = flags  # export booleans
-    tflite = True
     file = Path(url2file(weights) if str(weights).startswith(('http:/', 'https:/')) else weights)  # PyTorch weights
 
     # Load PyTorch model
@@ -496,12 +456,10 @@ def run(data=ROOT / 'data/coco128.yaml',  # 'dataset.yaml path'
     gs = int(max(model.stride))  # grid size (max stride)
     imgsz = [check_img_size(x, gs) for x in imgsz]  # verify img_size are gs-multiples
     im = torch.zeros(batch_size, 3, *imgsz).to(device)  # image size(1,3,320,192) BCHW iDetection
-    # print(im.shape)
-    # exit()
+
     # Update model
     if half:
         im, model = im.half(), model.half()  # to FP16
-    model = model.float()
     model.train() if train else model.eval()  # training mode = no Detect() layer grid construction
     for k, m in model.named_modules():
         if isinstance(m, Conv):  # assign export-friendly activations
@@ -513,52 +471,24 @@ def run(data=ROOT / 'data/coco128.yaml',  # 'dataset.yaml path'
             if hasattr(m, 'forward_export'):
                 m.forward = m.forward_export  # assign custom forward (optional)
 
-
-
-    # img = cv2.imread("data/1.png")
-    # cloud = cv2.imread("data/2.png")
-    # img = img.transpose((2, 0, 1))[::-1]  # HWC to CHW, BGR to RGB
-    # img = np.ascontiguousarray(img)
-    # cloud = cloud.transpose((2, 0, 1))[::-1]  # HWC to CHW, BGR to RGB
-    # cloud = np.ascontiguousarray(cloud)
-    # img = torch.from_numpy(img).to(device)
-    # img = img.float()  # uint8 to fp16/32  model.fp16 =  False,so im.float 32 bits
-    # img /= 255  # 0 - 255 to 0.0 - 1.0
-    # cloud = torch.from_numpy(cloud).to(device)
-    # cloud = cloud.float()  # uint8 to fp16/32
-    # cloud /= 255  # 0 - 255 to 0.0 - 1.0
-    # xclouds = torch.cat((img, cloud), axis=2)
-    # xclouds= xclouds.unsqueeze(0)
-    # print("$$$$$$$$$$$$$$$$$$$$$$")
-    # print(xclouds.shape)
-    # print("$$$$$$$$$$$$$$$$$$$$$$")
-
-
-    # for _ in range(2):
-    #     y = model(xclouds)[0]  # dry runs
-    #     pred2 = non_max_suppression(y, 0.00001, 0.001, 3, True, max_det=1000)
-    #
-    #     print(pred2)
-    #     print(("pytorch的预测结果（非nms："))
-    #     print(y)
-    #     print(("pytorch的预测结果（非nms："))
-
-    # shape = tuple(y[0].shape)  # model output shape
-    # LOGGER.info(f"\n{colorstr('PyTorch:')} starting from {file} with output shape {shape} ({file_size(file):.1f} MB)")
+    for _ in range(2):
+        y = model(im)  # dry runs
+    shape = tuple(y[0].shape)  # model output shape
+    LOGGER.info(f"\n{colorstr('PyTorch:')} starting from {file} with output shape {shape} ({file_size(file):.1f} MB)")
 
     # Exports
     f = [''] * 10  # exported filenames
     warnings.filterwarnings(action='ignore', category=torch.jit.TracerWarning)  # suppress TracerWarning
-    # if jit:
-    #     f[0] = export_torchscript(model, im, file, optimize)
-    # if engine:  # TensorRT required before ONNX
-    #     f[1] = export_engine(model, im, file, train, half, simplify, workspace, verbose)
-    # if onnx or xml:  # OpenVINO requires ONNX
-    #     f[2] = export_onnx(model, im, file, opset, train, dynamic, simplify)
-    # if xml:  # OpenVINO
-    #     f[3] = export_openvino(model, im, file)
-    # if coreml:
-    #     _, f[4] = export_coreml(model, im, file)
+    if jit:
+        f[0] = export_torchscript(model, im, file, optimize)
+    if engine:  # TensorRT required before ONNX
+        f[1] = export_engine(model, im, file, train, half, simplify, workspace, verbose)
+    if onnx or xml:  # OpenVINO requires ONNX
+        f[2] = export_onnx(model, im, file, opset, train, dynamic, simplify)
+    if xml:  # OpenVINO
+        f[3] = export_openvino(model, im, file)
+    if coreml:
+        _, f[4] = export_coreml(model, im, file)
 
     # TensorFlow Exports
     if any((saved_model, pb, tflite, edgetpu, tfjs)):
@@ -568,14 +498,14 @@ def run(data=ROOT / 'data/coco128.yaml',  # 'dataset.yaml path'
         model, f[5] = export_saved_model(model.cpu(), im, file, dynamic, tf_nms=nms or agnostic_nms or tfjs,
                                          agnostic_nms=agnostic_nms or tfjs, topk_per_class=topk_per_class,
                                          topk_all=topk_all, conf_thres=conf_thres, iou_thres=iou_thres)  # keras model
-        # if pb or tfjs:  # pb prerequisite to tfjs
-        #     f[6] = export_pb(model, im, file)
+        if pb or tfjs:  # pb prerequisite to tfjs
+            f[6] = export_pb(model, im, file)
         if tflite or edgetpu:
             f[7] = export_tflite(model, im, file, int8=int8 or edgetpu, data=data, ncalib=100)
-        # if edgetpu:
-        #     f[8] = export_edgetpu(model, im, file)
-        # if tfjs:
-        #     f[9] = export_tfjs(model, im, file)
+        if edgetpu:
+            f[8] = export_edgetpu(model, im, file)
+        if tfjs:
+            f[9] = export_tfjs(model, im, file)
 
     # Finish
     f = [str(x) for x in f if x]  # filter out '' and None
@@ -592,8 +522,8 @@ def run(data=ROOT / 'data/coco128.yaml',  # 'dataset.yaml path'
 def parse_opt():
     parser = argparse.ArgumentParser()
     parser.add_argument('--data', type=str, default=ROOT / 'data/coco128.yaml', help='dataset.yaml path')
-    parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'runs/train/exp97/weights/best.pt', help='model.pt path(s)')
-    parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[480, 640*2], help='image (h, w)')
+    parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'yolov5s.pt', help='model.pt path(s)')
+    parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640, 640], help='image (h, w)')
     parser.add_argument('--batch-size', type=int, default=1, help='batch size')
     parser.add_argument('--device', default='cpu', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
     parser.add_argument('--half', action='store_true', help='FP16 half-precision export')

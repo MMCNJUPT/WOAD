@@ -192,13 +192,13 @@ def run(data,
         im /= 255  # 0 - 255 to 0.0 - 1.0
         nb, _, height, width = im.shape  # batch size, channels, height, width
         cloud = cloud.half() if half else cloud.float()  # uint8 to fp16/32
-        cloud /= 255  # 0 - 255 to 0.0 - 1.0
+        cloud /= 255  # 0 - 255 to 0.0 - 1.0 
+        xclouds = torch.cat((im, cloud), axis=3)
         t2 = time_sync()
         dt[0] += t2 - t1
         #print(im.shape)
         # Inference
-        xclouds = torch.cat((im, cloud), axis=3)
-        out, train_out = model(xclouds) if training else model(im,cloud, augment=augment, val=True)  # inference, loss outputs
+        out, train_out = model(xclouds) if training else model(xclouds, augment=augment, val=True)  # inference, loss outputs
         # print("out.shape", out.shape)
         # print("train_out.reshape", train_out.shape)
         dt[1] += time_sync() - t2
@@ -269,7 +269,7 @@ def run(data,
             callbacks.run('on_val_image_end', pred, predn, path, names, im[si])
 
         # Plot imagesplots and
-        if 1:#batch_i < 13:
+        if batch_i < 13:
             f = save_dir / f'val_batch{batch_i}_labels.jpg'  # labels
             Thread(target=plot_images, args=(im, targets, paths, f, names), daemon=True).start()
             f = save_dir / f'val_batch{batch_i}_pred.jpg'  # predictions

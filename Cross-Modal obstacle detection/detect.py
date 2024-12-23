@@ -4,7 +4,7 @@ import time
 import os
 import sys
 from pathlib import Path
-# import pyttsx3
+import pyttsx3
 import numpy as np
 import torch
 import torch.backends.cudnn as cudnn
@@ -18,7 +18,7 @@ ROOT = FILE.parents[0]  # YOLOv5 root directory
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
-
+from torchsummary import summary
 from models.common import DetectMultiBackend
 from utils.datasets import IMG_FORMATS, VID_FORMATS, LoadImages, LoadStreams
 from utils.general import (LOGGER, check_file, check_img_size, check_imshow, check_requirements, colorstr,
@@ -26,12 +26,10 @@ from utils.general import (LOGGER, check_file, check_img_size, check_imshow, che
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, time_sync
 import cv2
-#from pynput import keyboard
+from pynput import keyboard
 isEnd = False
 import threading
 
-#from deep_sort_realtime.deepsort_tracker import DeepSort
-#tracker = DeepSort(max_age=5)
 @torch.no_grad()
 def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
         source=ROOT / 'data/images',  # file/dir/URL/glob, 0 for webcam
@@ -91,8 +89,9 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
     print(weights)
 
     model = DetectMultiBackend(weights, device=device, dnn=dnn, data=data, fp16=half)
-
-
+    # summary(model, input_size=(3, 640, 640))
+    #
+    # exit()
     # print(model)
     # print(model.stride, model.names, model.pt)#32 ['person', 'stairs'] True
     stride, names, pt = model.stride, model.names, model.pt
@@ -119,7 +118,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
     # print(client_addr)
     # webcam=True
     new_client_socket,client_addr=0,0
-   # new_client_socket=0
+    # new_client_socket=0
     if webcam:
         view_img = True#check_imshow()
         cudnn.benchmark = True  # set True to speed up constant image size inference
@@ -136,7 +135,27 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
     detnum=0
     detsx={}
     detsy={}
-
+    img = cv2.imread("data/testdata/rgb/ir130.png")
+    depth = cv2.imread("data/testdata/depth/depth_130_num2.png")
+    new_img = np.zeros((480, 1280, 3))
+    new_img[:, :640, :] = img[:,:,:]
+    new_img[:, 640:, :] = depth[:,:,:]
+    cv2.imwrite("result.png", new_img)
+    # cv2.imshow("sss",new_img/255)
+    # cv2.waitKey(0)
+    new_img = new_img
+    new_img1 = new_img.transpose((2, 0, 1))[::-1]
+    new_img1 = np.ascontiguousarray(new_img1)
+    new_img1= np.expand_dims(new_img1, axis=0)
+    print(new_img1.shape)
+    new_img_in = torch.from_numpy(new_img1).float()/255.0
+    pred = model(new_img_in, augment=augment, visualize=visualize)
+    for i in pred[0]:
+        print(i)
+        break
+    pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
+    print(pred)
+    exit()
     for enum , (path, im, im0s, vid_cap, s ,cpath, cloud, cloud0, z_distance) in enumerate(dataset):
         t1 = time_sync()
         # print(path)
@@ -164,6 +183,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
             cloud = cloud[None]  # expand for batch dim
         t2 = time_sync()
         dt[0] += t2 - t1
+        xclouds = torch.cat((im, cloud), axis=3)
 
         # train2=True
         # model_file = 'yolov5slidar3.onnx'
@@ -190,7 +210,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
 
         # Inference
         visualize = increment_path(save_dir / Path(path).stem, mkdir=True) if visualize else False
-        pred = model(im,cloud, augment=augment, visualize=visualize)
+        pred = model(xclouds, augment=augment, visualize=visualize)
         t3 = time_sync()
         dt[1] += t3 - t2
 
@@ -198,26 +218,15 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
         # print(agnostic_nms)
         # print(max_det)
         # exit()
-        pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
-        prednew=[]
-        # for i, det in enumerate(pred):
-        #     if len(det):
-        #         det[:, :4] = scale_coords(im.shape[2:], det[:, :4], im0s.shape).round()
-        #         det[:, 2] = det[:, 2]-det[:, 0]
-        #         det[:, 3] = det[:, 3]-det[:, 1]
-        #         prednew.append(det)
-        #         #print(prednew)
-        #         tracks = tracker.update_tracks(prednew, frame=im0s)
-        #         for track in tracks:
-        #             track_id = track.track_id
-        #             ltrb = track.to_ltrb()
-        #             if not track.is_confirmed():
-        #                 print("首次出现：",track_id,ltrb,track.det_class)
-        #                 continue
-        #             #if 判断距离《150：
+        for i in pred[0]:
+            print(i)
+            break
+        print(conf_thres, iou_thres, classes, agnostic_nms, max_det)
         #
-        #             print("持续追踪：",track_id,ltrb,track.det_class)
-       # continue
+        exit()
+        pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
+
+
         dt[2] += time_sync() - t3
 
         # Process predictions
@@ -237,11 +246,12 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
             imc = im0.copy()# if save_crop else im0  # for save_crop
             annotator = Annotator(im0, line_width=line_thickness, example=str(names))
             if len(det):#det是目标的数量
+                print(det)
                 newdetsx={}
                 newdetsy={}
                 # Rescale boxes from img_size to im0 size
                 det[:, :4] = scale_coords(im.shape[2:], det[:, :4], im0.shape).round()#lable type: xyxy
-               # print(det)
+                # print(det)
                 detsum=detsum+1
                 csave=np.zeros([len(det),2])
 
@@ -375,7 +385,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                         sumdistance=int(sumdistance/distancenumber)
                     sumdistance=sumdistance/10
                     #print(f'distance  {sumdistance} cm')
-                   # print(centerx, centery, cls)
+                    # print(centerx, centery, cls)
 
 
 
@@ -412,7 +422,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
             #filenum=path.split("\\")[-1].split(".")[0]
 
             filename=f"runs/label_conf_npy/{enum}.npy"
-    #        np.save(filename, csave)
+            #np.save(filename, csave)
             # Stream results
             im0 = annotator.result()
             view_img= True
@@ -463,14 +473,14 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
 
 def parse_opt():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'runs/train/exp72/weights/best.pt', help='model path(s)')#权重文件runs/train/exp54/weights/last.pt
-    parser.add_argument('--source', type=str, default=ROOT / 'data/detec_test', help='file/dir/URL/glob, 0 for webcam')#测试数据data/source2/
+    parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'runs/train/exp97/weights/best.pt', help='model path(s)')#权重文件runs/train/exp54/weights/last.pt
+    parser.add_argument('--source', type=str, default=ROOT / 'data/testdata/', help='file/dir/URL/glob, 0 for webcam')#测试数据data/source2/
     parser.add_argument('--data', type=str, default=ROOT / 'data/stairscoco.yaml', help='(optional) dataset.yaml path')#
     parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640], help='inference size h,w')
     parser.add_argument('--conf-thres', type=float, default=0.45, help='confidence threshold')
     parser.add_argument('--iou-thres', type=float, default=0.65, help='NMS IoU threshold')
     parser.add_argument('--max-det', type=int, default=1000, help='maximum detections per image')
-    parser.add_argument('--device', default='', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
+    parser.add_argument('--device', default='cpu', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
     parser.add_argument('--view-img', action='store_true', help='show results')
     parser.add_argument('--save-txt', action='store_true', help='save results to *.txt')
     parser.add_argument('--save-conf', action='store_true', help='save confidences in --save-txt labels')
@@ -498,7 +508,26 @@ def parse_opt():
 def main(opt):
     check_requirements(exclude=('tensorboard', 'thop'))
     run(**vars(opt))
+def keyboard_on_press(key):
+    global isEnd
+    try:
+        print('字母键{0} press'.format(key.char))
+    except AttributeError:
+        print('特殊键{0} press'.format(key))
+        if key == keyboard.Key.esc:
+            isEnd = True
+            return False
+def function(opt):
+    global isEnd
+    # 创建、启动键盘监听线程,阻塞版本
+    listener = keyboard.Listener(on_press=keyboard_on_press)
+    # 创建、启动鼠标监听线程
+    t2 = threading.Thread(target=main,args=(opt,))
+    listener.start()
+    t2.start()
+    listener.join()
+    t2.join()
 
 if __name__ == "__main__":
     opt = parse_opt()
-    main(opt)
+    function(opt)
