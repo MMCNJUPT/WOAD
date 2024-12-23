@@ -3,7 +3,7 @@ import d3rlpy
 import onnxruntime as rt
 import pandas as pd
 
-excel_file = "./RL_data/data.xlsx"  # 将此处替换为您的Excel文件路径
+excel_file = "data.xlsx"  # 将此处替换为您的Excel文件路径
 df = pd.read_excel(excel_file)
 
 all_columns_data = df.values.T
@@ -11,7 +11,7 @@ features = all_columns_data[:, 0:6]
 features = features / [420, 420, 420, 420, 400, 400]
 sparse_reward = all_columns_data[:, 7]
 
-classifier = rt.InferenceSession('./RL_data/classifier_model.onnx')
+classifier = rt.InferenceSession('./model.onnx')
 output_name = []
 input_name = classifier.get_inputs()[0].name
 print(input_name)
@@ -21,7 +21,7 @@ for i in range(len(classifier.get_outputs())):
     output_name.append(name)
 print(output_name)
 
-sess_fl32 = rt.InferenceSession('./RL_data/DSAC.onnx')
+sess_fl32 = rt.InferenceSession('./onnx_test3.onnx')
 output_name_fl32 = []
 input_name_fl32 = sess_fl32.get_inputs()[0].name
 print(input_name_fl32)
@@ -30,13 +30,13 @@ for i in range(len(sess_fl32.get_outputs())):
     name = str(sess_fl32.get_outputs()[i].name)
     output_name_fl32.append(name)
 
-observations = np.load('./RL_data/state.npy')
+observations = np.load('./state.npy')
 observations = observations[:, :]
 observations = np.swapaxes(observations, 0, 1)
-terminals = np.load('./RL_data/terminals.npy')
+terminals = np.load('./terminals.npy')
 print(observations.shape, terminals.shape)
 
-actions = np.load('./RL_data/new_action.npy')
+actions = np.load('./new_action.npy')
 reward = np.zeros(shape=(328, 1))
 observations = observations[:, :] / [420, 420, 420, 420, 400, 400]
 for i in range(observations.shape[0]):
@@ -87,4 +87,4 @@ dataset = d3rlpy.dataset.MDPDataset(
     rewards=reward,
     terminals=terminals,
 )
-dataset.dump('./RL_data/cerebellar_dataset_RL.h5')
+dataset.dump('cerebellar_dataset_RL.h5')
