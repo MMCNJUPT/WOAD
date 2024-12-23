@@ -154,7 +154,7 @@ The training/validation/test datasets can be found in the [Google Drive Link](ht
 ### Demo
 * Run `python train.py --data data/stairscoco_nc_4/6/8/10.yaml`.
 
-After the training is complete, you can find the optimal weights in /runs/train, which will be deployed on the mobile device.
+After the training is complete, you can find the optimal weights in `/runs/train/best.pt`, which will be deployed on the mobile device.
 
 * Run `python val.py --data data/stairscoco_nc_4/6/8/10.yaml` to get dataset with cerebellar reward.
 
