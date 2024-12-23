@@ -1,6 +1,6 @@
 # WOAD: A Wearable Obstacle Avoidance Device for Visually Impaired Individuals with Cross-Modal Learning
 
-This repository contains the source codes and data for our paper reviewed in Nature Communications:
+It is challenging for wearable obstacle avoidance devices to simultaneously meet practical demands of high reliability, rapid response, long-lasting duration, and user-friendly design. Here we report a wearable obstacle avoidance device, comprising a set of self-developed glasses (weighing $\sim$ 400 grams, including an $\sim$ 80 grams battery) and a common smartphone. Specifically, the glasses collect the multi-modal data for comprehensive environmental perception, including video and depth modalities, and implement a depth-aided video compression module. This module not only adaptively compresses video data to reduce transmission delay to the smartphone, but also operates on a customized FPGA board featuring a multi float-point vector unit streaming processing architecture, thereby facilitating responsive and energy-efficient obstacle detection. Additionally, we design a cross-modal obstacle detection module on the smartphone, which ensures reliable detection and provides user-friendly auditory and tactile alerts by utilizing cross-modal learning based on modal correlations. This repository contains the source codes and data for our paper:
 
 ## 1. Data collection and pre-processing
 
